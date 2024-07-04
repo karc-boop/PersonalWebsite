@@ -1,84 +1,51 @@
-/* eslint-disable import/no-anonymous-default-export */
-import getcat from "../../utils/cat"
-import getnp from "../../utils/spotify"
+
+
 export default {
     commands: {
-        echo: {
-            description: 'Prints the given text to the console',
-            usage: 'echo <text>',
-            fn: (...args) => args.join(" ")
-        },
-        // cat: {
-        //     description: 'Get a cute cat image.',
-        //     usage: 'cat',
-        //     fn: async () => {
-        //         const url = await getcat()
-        //         window.open(url, '_blank')
-        //         return "fetching cat...\ncat fetched successfully!"
-        //     }
-        // },
         about: {
             description: 'About Me.',
             usage: 'about',
             fn: () => {
-                return "About Me.\n---\nmale\n18\nstudent\nsolodev\nmelophile\nweeb\ndumb\napathetic\n---\n"
-            }
-        },
-        twitter: {
-            description: 'Opens my Twitter Handle.',
-            usage: 'twitter',
-            fn: () => {
-                window.open('https://twitter.com/_asheeshh', '_blank')
-                return "opening twitter handle..."
+                return "About Me.\n---\n Female | Asian | First-Gen \nMSCS Grad Student@Northeastern\nSoftware Engineer Intern@Ipser Lab\n"
+                       + "Hi, this is Karmen. Currently I am a master student majoring in computer science align at Northeastern, interning for a startup focusing on marketing strategy business. Besides, I am passionate about building real-world mobile application(iOS & Android) driven by Large Language Models."
             }
         },
         github: {
             description: 'Opens my GitHub Profile.',
-            usage: 'twitter',
+            usage: 'github',
             fn: () => {
-                window.open('https://github.com/asrvd', '_blank')
+                window.open('https://github.com/asrvd', '_blank');
                 return "opening github account..."
             }
         },
-        discord: {
-            description: 'Opens my Discord Account.',
-            usage: 'twitter',
+        linkedin: {
+            description: "Opens my Linkedin Profile.",
+            usage: "linkedin",
             fn: () => {
-                window.open('https://discordapp.com/users/784363251940458516', '_blank')
-                return "opening discord account..."
+                window.open('https://www.linkedin.com/in/karmen-cai/', '_blank');
+                return "opening linkedin account..."
             }
         },
         languages: {
             description: 'Languages I know.',
             usage: 'languages',
             fn: () => {
+                const drawBar = (percent) => {
+                    const barLength = 20;
+                    const filledLength = Math.round(barLength * percent / 100);
+                    const emptyLength = barLength - filledLength;
+                    const bar = '█'.repeat(filledLength) + '░'.repeat(emptyLength);
+                    return bar;
+                };
+
                 return `
-                    these are the languages I know.\n---\n
-                    english          - 70%
-                    hindi            - 100%
-                    gen-z-langauge   - 00%
-                    python           - 60%
-                    javascript       - 60%
-                    html5            - 90%
-                    css3             - 80%
-                    ruby             - 40%
-                    rust             - 10% - [learning]
-                    go-lang          - 10% - [learning]\n---\n
-                `
-            }
-        },
-        skills: {
-            description: 'Skills I have.',
-            usage: 'skills',
-            fn: () => {
-                return `
-                    these are the skills I have.\n---\n
-                    procrastination  - 100%
-                    coding           - 50%
-                    studying         - 10%
-                    overthinking     - 100%
-                    social-skills    - 00%
-                    making-playlists - 100%\n---\n
+                    these are the languages I know.\n \n
+                    Python________[${drawBar(95)}] 
+                    Java__________[${drawBar(95)}] 
+                    C/C++_________[${drawBar(90)}] 
+                    Swift_________[${drawBar(90)}] 
+                    JavaScript____[${drawBar(75)}] 
+                    Go-lang_______[${drawBar(50)}] [learning......]\n \n
                 `
             }
         },
@@ -87,73 +54,59 @@ export default {
             usage: 'projects',
             fn: () => {
                 return `
-                    Cool projects I have worked on.\n---\n
-                    'ashterm'                         | 'terminal portfolio'   | 'javascript'
-                    'octocolor'                       | 'github profile color' | 'javascript'
-                    'kanna-chan'                      | 'Discord-Bot'          | 'python'
-                    'wordinal'                        | 'wordle-on-terminal'   | 'javascript'
-                    'weeby.py'                        | 'API-wrapper'          | 'python'
-                    'gitbanner'                       | 'banner-generator'     | 'javascript'\n---\n
-                `
+                    <div style="font-family: monospace;">
+                        Cool projects I have worked on and been working on.
+                        <table>
+                            <tr>
+                                <td>Full Stack Dev</td>
+                                <td>| Admin DashBoard Section</td>
+                                <td>| React.js</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <img src="/assets/images/base.jpg" alt="Admin Dashboard" style="width:300px;"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Full Stack Dev</td>
+                                <td>| Food Delivery</td>
+                                <td>| Java, SpringBoot</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <img src="../assets/images/food-delivery.png" alt="Food Delivery" style="width:300px;"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Mobile Dev</td>
+                                <td>| Pat Pat</td>
+                                <td>| Swift</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <img src="../assets/images/pat-pat.png" alt="Pat Pat" style="width:300px;"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Lower Level Dev</td>
+                                <td>| Network Server</td>
+                                <td>| C++</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <img src="../assets/images/network-server.png" alt="Network Server" style="width:300px;"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                `;
             }
         },
-        editor: {
-            description: 'Details about my current editor',
-            usage: 'editor',
-            fn: () => {
-                return `
-                    Editor: Visual Studio Code\n
-                    Theme : Catpuccin\n
-                    Font  : Consolas
-                `
-            }
-        },
-        repo: {
-            description: "Opens this website's github repository.",
-            usage: 'repo',
-            fn: () => {
-                window.open("https://github.com/asrvd/AshTerm", '_blank')
-                return "opening repository..."
-            }
-        },
-        spotify: {
-            description: 'Get info about my recently played song.',
-            usage: 'spotify',
-            fn: async () => {
-                const item = await getnp()
-                return `
-                    Now Playing/Recently Played\n
-                    ---\n
-                    Song: ${item.song}\n
-                    Artist: ${item.artist}\n---\n
-                `
-            }
-        }
     },
-    overwrites:{
+    overwrites: {
         help: {
             description: 'List all available commands',
             usage: 'help',
         },
-        cd: {
-            description: 'Change directory, not really, lol!',
-            usage: 'cd <directory>',
-        },
-        ls: {
-            description: 'List files in the current directory',
-            usage: 'ls',
-        },
-        mkdir: {
-            description: 'Make a directory',
-            usage: 'mkdir <directory>',
-        },
-        clear: {
-            description: 'Clears the terminal',
-            usage: 'clear'
-        },
-        cat: {
-            description: 'Get a cute cat image.',
-            usage: 'cat',
-        }
     }
-}
+};
